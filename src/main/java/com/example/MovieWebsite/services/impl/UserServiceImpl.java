@@ -154,11 +154,16 @@ public class UserServiceImpl extends BaseService implements UserService {
 
     @Override
     public BaseResultDTO findAll() {
-        ArrayResultDTO<UserEntity> response = new ArrayResultDTO<>();
+        ArrayResultDTO<UserDTO> response = new ArrayResultDTO<>();
+        ArrayList<UserDTO> DTOResult = new ArrayList<>();
         try {
             ArrayList<UserEntity> ls = (ArrayList<UserEntity>) userRepository.findAll();
             if (!ls.isEmpty()) {
-                response.setSuccess(ls);
+                for(UserEntity user : ls){
+                    UserDTO tempDTO = modelMapper.map(user, UserDTO.class);
+                    DTOResult.add(tempDTO);
+                }
+                response.setSuccess(DTOResult);
             }
         } catch (Exception e) {
             response.setFail(e.getMessage());

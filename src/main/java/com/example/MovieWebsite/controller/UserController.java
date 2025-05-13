@@ -16,9 +16,8 @@ public class UserController extends BaseController {
     UserService usersService;
 
     @RequestMapping(value = "/findAllUser", method = RequestMethod.GET)
-    public ResponseEntity<BaseResultDTO> allUsers(@RequestParam("pageSize") Integer pageSize,
-                                               @RequestParam("page") Integer page) {
-        BaseResultDTO result = usersService.findAllUsers(pageSize, page);
+    public ResponseEntity<BaseResultDTO> allUsers() {
+        BaseResultDTO result = usersService.findAll();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -46,7 +45,7 @@ public class UserController extends BaseController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
     public ResponseEntity<BaseResultDTO> deleteUser(@RequestParam("id") Integer requestDTO) {
         BaseResultDTO result = usersService.deleteUser(requestDTO);
         return new ResponseEntity<>(result, HttpStatus.OK);
