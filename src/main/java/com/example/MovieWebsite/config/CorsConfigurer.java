@@ -11,7 +11,7 @@ public class CorsConfigurer implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")  // Áp dụng cho tất cả các đường dẫn
-                .allowedOrigins("http://localhost:3000")  // Cho phép từ domain này (có thể thay đổi)
+                .allowedOrigins("http://localhost:3000", "https://moviewebda.site")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")  // Các phương thức HTTP cho phép
                 .allowedHeaders("*")  // Cho phép tất cả các header
                 .allowCredentials(true);  // Cho phép gửi cookies hoặc thông tin xác thực
