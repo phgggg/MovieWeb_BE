@@ -17,8 +17,11 @@ public interface MovieRepository extends JpaRepository<MovieEntity, Integer> {
     @Query("SELECT m FROM MovieEntity m JOIN m.genres g WHERE LOWER(g.genreName) = LOWER(:genreName)")
     List<MovieEntity> findMovieEntitiesByMovieGenre(@Param("genreName") String genre);
 
+//    @Query(value = "SELECT * FROM movies " +
+//            "where MATCH (movie_name) AGAINST (:keyword in boolean mode) " +
+//            "or MATCH (original_movie_name) AGAINST (:keyword  in boolean mode);", nativeQuery = true)
     @Query(value = "SELECT * FROM movies " +
-            "where MATCH (movie_name) AGAINST (:keyword in boolean mode) " +
-            "or MATCH (original_movie_name) AGAINST (:keyword  in boolean mode);", nativeQuery = true)
+            "WHERE movie_name LIKE CONCAT('%', :keyword, '%') " +
+            "OR original_movie_name LIKE CONCAT('%', :keyword, '%')", nativeQuery = true)
     List<MovieEntity> searchMovieEntities(@Param("keyword") String keyword);
 }
