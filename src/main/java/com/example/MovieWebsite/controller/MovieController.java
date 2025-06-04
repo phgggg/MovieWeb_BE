@@ -45,7 +45,7 @@ public class MovieController extends BaseController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteMovie/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteMovie/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<BaseResultDTO> deleteMovie(@PathVariable Integer id) {
         BaseResultDTO result = MoviesService.deleteMovie(id);
         return new ResponseEntity<>(result, HttpStatus.OK);

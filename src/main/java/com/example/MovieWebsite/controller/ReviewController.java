@@ -52,7 +52,7 @@ public class ReviewController extends BaseController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/deleteReview/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteReview/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<BaseResultDTO> deleteReview(@PathVariable Integer id) {
         BaseResultDTO result = ReviewsService.deleteReview(id);
         return new ResponseEntity<>(result, HttpStatus.OK);

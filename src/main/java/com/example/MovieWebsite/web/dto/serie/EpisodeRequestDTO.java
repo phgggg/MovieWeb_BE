@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EpisodeDTO {
+public class EpisodeRequestDTO {
     private Integer episodeID;
     private String episodeName;
     private Integer episodeNumber;
@@ -22,6 +22,6 @@ public class EpisodeDTO {
     private Float voteAverage;
     private Integer voteCount;
     private Integer runtime;
-    private SeasonEntity season;
-    private SerieEntity series;
+    private Integer seasonID;
+    private Integer serieID;
 }

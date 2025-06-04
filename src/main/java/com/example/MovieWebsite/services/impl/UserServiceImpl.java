@@ -85,10 +85,19 @@ public class UserServiceImpl extends BaseService implements UserService {
     public BaseResultDTO updateUser(UserDTO userDTO) {
         logger.info("=== START UPDATE USER::" + userDTO.getUserID());
         BaseResultDTO baseResultDTO = new BaseResultDTO();
+        String pass = null;
         try {
             UserEntity user = userRepository.getUserEntitiesByUserID(userDTO.getUserID());
             if (user.getUserID() != null) {
+                pass = user.getPassword();
+                logger.info("OLD PASSWORD IS " + pass);
+
                 UserEntity usersEntity = modelMapper.map(userDTO, UserEntity.class);
+                if(userDTO.getPassword()==""){
+                    logger.info("PASSWORD UNCHANGED");
+                }else{
+                    usersEntity.setPassword(encoder.encode(pass));
+                }
 //                user.setUserName(usersDTO.getUserName());
 //                user.setFullName(usersDTO.getFullName());
 //                user.setPassWord(usersDTO.getPassWord());
