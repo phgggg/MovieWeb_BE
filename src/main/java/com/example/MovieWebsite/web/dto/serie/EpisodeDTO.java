@@ -22,6 +22,7 @@ public class EpisodeDTO {
     private Float voteAverage;
     private Integer voteCount;
     private Integer runtime;
+    @JsonIgnore
     private SeasonEntity season;
     private SerieEntity series;
 }
